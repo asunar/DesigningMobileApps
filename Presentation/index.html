@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section>
+        <h1>Designing mOBILE&nbsp;</h1>
+        <h1>APPS</h1>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>Alper Sunar</div>
+        <div>alper_sunar@yahoo.com</div>
+        <div>
+            <a href="https://github.com/asunar/DesigningMobileApps">https://github.com/asunar/DesigningMobileApps</a>
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>phonegap overview</h2>
+        <h2>
+            <br>
+        </h2>
+        <h2>
+            <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84705/phonegap.jpg">
+            <br>
+        </h2>
+        <div>
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>Phonegap apps are webapps<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84706/WebApp.png">
+        </h2>
+    </section>
+    <section>
+        <h2>That can access mobile devices</h2>
+        <div>
+            <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84707/AccessDevices.png">
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>cage match: hybrid or native</h2>
+        <div>
+            <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84710/HybridNative.png">
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>single page apps (spa)</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+<pre>&lt;html&gt;<br>&lt;head&gt;<br>&nbsp;&lt;title&gt;Huge App&lt;/title&gt;<br> &lt;script src="my-app.js"&gt;&lt;/script&gt;<br>&lt;/head&gt;<br>&lt;body&gt;&lt;/body&gt;<br>&lt;/html&gt;</pre></div><br></section><section><h2><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84718/SPA.png"><br></h2></section><section><h2>SPA REVIEW</h2><h2 style="text-align: left; "><span style="font-size: 36px; text-transform: none;">BENEFITS</span></h2><div style="text-align: left; "><ul><li>Fast</li><li>Works offline</li><li>Control over experience</li></ul><div><br></div><div><h2 style="font-style: normal; font-variant: normal;"><span style="font-size: 36px; text-transform: none;">CAVEATS</span></h2></div><div><ul><li>More complex</li><li>Memory management</li><li>Modular strategy</li></ul></div></div></section><section><h2>DATA ACCESS</h2><div><br></div><div><pre><code>$.ajax({url: "/api/employee/3"}).done(function(employee) {
+//Do something with employee
+});  </code>        </pre>
+    </div>
+</section>
+    <section>
+        <h2 style="font-style: normal; font-variant: normal;">DATA ACCESS</h2>
+        <h2>
+            <div style="font-size: 36px; font-style: normal; font-variant: normal; text-transform: none;">
+                <br>
+            </div>
+            <div style="font-size: 36px; font-style: normal; font-variant: normal; text-transform: none;">
+                <pre style="width: 862.1875px;">
+                    <code>$.ajax({url: "/api/employee/3"}).done(function(employee) {
+//Do something with employee
+});  </code>
+                </pre>
+            </div>
+        </h2>
+        <div>
+            <br>
+        </div>
+        <div>Data Access Layer / Repository / DataAdapter etc.</div>
+        <div>
+<pre><code>dataAdapter.findById(3).done(function(employee) {
+//Do something with employee
+}); </code>        </pre>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+<section>
+    <h2>COMMON API</h2>
+    <div>
+<pre><code>var JSONPAdapter = function() {
+&nbsp; &nbsp; this.initialize = function(data) {
+		//initialize adapter
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; this.findById = function(id) {
+&nbsp; &nbsp; &nbsp; &nbsp; //call remote service to find and return item
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; this.findByName = function(searchKey) {
+&nbsp; &nbsp; &nbsp; &nbsp; //call remote service to search by name
+&nbsp; &nbsp; }
+} </font></code>    </pre>
+</div>
+<div>
+<pre><code>var MemoryAdapter = function() {
+&nbsp; &nbsp; this.initialize = function() {
+&nbsp; &nbsp; &nbsp; &nbsp; // No Initialization required
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; this.findById = function(id) {
+		// find in local json variable (employees)
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; this.findByName = function(searchKey) {
+		// search in local json variable
+&nbsp; &nbsp; }
+
+&nbsp; &nbsp; var employees = [ {...}, {...}];
+} </font></code></pre>
+</div>
+</section>
+<section>
+    <h2>RUNNABLE IN BROWSER</h2>
+    <div>
+        <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84791/alert.png">
+        <br>
+    </div>
+    <div>
+        <div style="text-align: left; ">Default JavaScript alert gives away the fact that your application is not native</div>
+        <div style="text-align: left; ">PhoneGap API:</div>
+        <div style="text-align: left; ">
+<pre><code>navigator.notification.alert(message, alertCallback, [title], [buttonName]) </code>        </pre>
+    </div>
+    <div style="text-align: left; ">... but that doesn’t work in your browser</div>
+    <div style="text-align: left; ">
+        <br>
+    </div>
+    <div style="text-align: left; ">Solution: Build an abstraction layer</div>
+    <div style="text-align: left; ">
+        <ul>
+            <li>
+                <span>Display JavaScript alert when running in the browser</span>
+                <br>
+            </li>
+            <li>
+                <span>Display Native alert when running on device</span>
+                <br>
+            </li>
+        </ul>
+    </div>
+</div>
+</section>
+<section>
+    <h2>BUILDING HTML WITH JS</h2>
+    <div>
+<pre>var html =&nbsp;<br>'&lt;div class="header"&gt;' +<br>&nbsp;'&lt;a href="#" class="button-left"&gt;List&lt;/a&gt;' +<br>&nbsp;'&lt;h1&gt;Employee&lt;/h1&gt;’ +<br>'&lt;/div&gt;' +<br>'&lt;div class="details"&gt;' +<br>&nbsp;'&lt;img src="pics/' + e.firstName + '_' + e.lastName + '.jpg"/&gt;' +<br>&nbsp;'&lt;h1&gt;' + e.firstName + ' ' + e.lastName + '&lt;/h1&gt;' +<br>&nbsp;'&lt;h2&gt;' + e.title + '&lt;/h2&gt;' +<br>&nbsp;'&lt;ul class="list"&gt;' +<br>&nbsp;'&lt;li&gt;&lt;a href="tel:' + e.officePhone + '"&gt;Call Office&lt;br/&gt;'&nbsp;<br>+ e.officePhone + '&lt;/a&gt;&lt;/li&gt;' +<br>&nbsp;'&lt;li&gt;&lt;a href="tel:' + e.cellPhone + '"&gt;Call Cell&lt;br/&gt;'&nbsp;<br>+ e.cellPhone + '&lt;/a&gt;&lt;/li&gt;' +<br>&nbsp;'&lt;li&gt;&lt;a href="sms:' + e.cellPhone + '"&gt;SMS&lt;br/&gt;'&nbsp;<br>+ e.cellPhone + '&lt;/a&gt;&lt;/li&gt;' +<br>&nbsp;'&lt;/ul&gt;' +<br>'&lt;/div&gt;';</pre></div></section><section><h2>template engines</h2><div><pre>&lt;div class="header"&gt;<br>&nbsp;&lt;a href="#" class="button-left"&gt;List&lt;/a&gt;<br>&nbsp;&lt;h1&gt;Employee&lt;/h1&gt;<br>&lt;/div&gt;<br>&lt;div class="details"&gt;<br>&nbsp;&lt;img src="pics/{{firstName}}_{{lastName}}.jpg"/&gt;<br>&nbsp;&lt;h1&gt;{{firstName}} {{lastName}}&lt;/h1&gt;<br>&nbsp;&lt;h2&gt;{{title}}&lt;/h2&gt;<br>&nbsp;&lt;ul class="list"&gt;<br>&nbsp;&lt;li&gt;&lt;a href="tel:{{officePhone}}"&gt;Call Office&lt;br/&gt;{{officePhone}}&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&lt;li&gt;&lt;a href="tel:{{cellPhone}}"&gt;Call Cell&lt;br/&gt;{{cellPhone}}&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&lt;li&gt;&lt;a href="sms:{{cellPhone}}"&gt;SMS&lt;br/&gt;{{cellPhone}}&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&lt;/ul&gt;<br>&lt;/div&gt;</pre></div><br></section><section><h2>CONSIDER FRAMEWORKS FOR STRUCTURE</h2><div><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84797/frameworks.png"><br></div></section><section><h2>ABSTRACT DEVICE FEATURES</h2><div><img src="https://s3.amazonaws.com/media-p.slid.es/uploads/alpersunar/images/84799/devicefeatures.png"><br></div></section><section><h2>HIDE HTML BEHAVIORS</h2><div><div style="text-align: left; "><ul><li><span>alert()</span><br></li><li><span>-webkit-touch-callout: none;</span><br></li><li><span>-webkit-tap-highlight-color:rgba(0, 0, 0, 0);</span><br></li></ul></div></div></section><section><h2>pERFORMANCE</h2><div><ul><li><span style="text-align: center;">Don't generate markup on the server</span><br></li><li><span style="text-align: center;">Don't block UI to display data</span><br></li><li><span style="text-align: center;">Cache everything</span><br></li><li><span style="text-align: center;">User hardware acceleration</span><br></li><li><span style="text-align: center;">Avoid click event delay</span><br></li><li><span style="text-align: center;">Use CSS sprite sheets</span><br></li><li><span style="text-align: center;">Limit shadows and gradients</span><br></li><li><span style="text-align: center;">Avoid reflows</span><br></li><li><span style="text-align: center;">Do you need that framework?</span><br></li><li><span style="text-align: center;">Test</span><br></li></ul></div>
+</section>
+
+
+<section>
+  <h3>
+      Credits
+  </h3>
+  <ul>
+    <li>
+      Christophe Coenraets http://coenraets.org/
+    </li>
+  </ul>
+</section>
+
+</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

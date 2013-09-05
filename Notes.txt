@@ -1,0 +1,180 @@
+talk about diff ways of architecting PhoneGap apps
+bad / good ways
+
+We'll start with a bare bone app without any frameworks
+and try to understand when and how to use them
+
+Realize how the some of the same principles apply to mobile app development
+
+How many using PG?
+
+Quick review of PG
+
+Things to look out for when ar
+
+PG apps are web apps. We will build a web app.
+
+we can't submit index.html to App Store.
+What to do? Make it native? Cross-compile/ Port no?
+
+Wrap it, hide it behind tiny little native app that is essentially a container
+for my web app.
+
+Now you can submit. From the outside it is a native app it is obj-c
+Inside it is HTML/CSS/JS.
+
+In addition access device features.
+
+PhoneGap is WRAPPER and a BRIDGE.
+---
+Review the differences hybrid/native.
+You can distribute PG app via the browser
+
+Native: fix bug, resubmit, wait ...
+When you need to update a PG app put HTML fix on the server
+Your app pings the server. Hey there is a new version, let me download and 
+cache. You worked around the app store process. You don't have to wait.
+
+Let's think about that for a sec. In the age of continuous delivery and
+multiple deployments why should your mobile app not enjoy those benefits?
+
+Perf.
+It is so easy to build a slow PG app. They don't have to be.
+80-90% of the apps it does not matter. The bottleneck will most probably be
+network or i/o instead of the engine executing your app.
+
+-----
+Data Access: is that good to have a lot of ajax? Hard to refactor.
+Will use localstorage instead of rest api. Your data access strategy
+is completely tighyly coupled in your app. Too hard
+
+Abstract data access: Sounds familiar? Data Access Layer/Repository/ServiceLayer
+code to interfaces not implementations hmm.
+
+Adapters need to agree on a contract. code to interfaces not implementations hmm.
+The way you to invoke the method should be identical as well.
+In memory: sync
+Rest: async
+
+Make everything async. It is much easier to fake sync call and make it async
+talk about memoryadapter.
+
+Great idea to start with in memory adapter. Return data from in-memory array.
+Simulate async call. Use deferred and promise object, beyond the scope.
+
+jquery ajax methods return deferred object. Stick to that convention.
+
+I will only change the adapter.
+
+---
+Benefits...You should NOT be blocked EVER. Iterate fast and drive service API
+Granular unit tests
+
+Browser runnable. Alert screams I'm an HTML app. Abstract
+PG api has native alert but it is not browser runnable.
+It is not available in browser.
+
+Browser is a wonderful debugging env. Remote debugging is hard.
+As much as you can run the app in the browser.
+
+I create my own function. Feature detection NOT device detection.
+Principle may have many different implementations
+-----
+SPA vs Multiple Page. Perf terrible with limited or no connectivity.
+new hotness.
+
+inject/remove from the same dom with js. Everything happens in that one page.
+Comparison.
+
+Developer is in charge of the user experience. If the page is coming from server
+by replacing the existing page. In mobile apps people expects nice transitions
+you can not do it if browser is in control.
+
+Load assets once.
+
+USE SPA when you build for mobile. For traditional desktop it depends.
+
+---------
+
+No leaks if pages are removed. If user stays on the same page, memory leaks
+keep piling up.
+
+When it is time to display home view, you will build HTML and inject into
+body.
+
+Another function that will build the HTML for the next page and replace.
+Simplest SPA.
+
+Building complex html with javascript is hard and error-prone. Merge data
+with mark up.
+
+All strings, no tooling, no intellisense.
+
+html with placeholders. You've been this on the server side for years.
+Same thing on the client side.
+
+use templates
+----------
+
+putting all the templates in index.html is not gonna be manageable.
+markup of entire app in index.html
+
+loading templates (user control)
+require.js module loader for js.
+or you can use a build process Grunt.
+
+Maintain templates in separate html files.
+Build will move individual template files in the index.html
+Development time task does not affect perf.
+
+Options:
+Load everything up front or on demand.
+
+Template loader is a utility that will load the files with a separate 
+http request. There is price to pay each request has a cost.
+
+Your logic, only load these templates on demand. Initial load time 
+will be better. It is a trade-off
+
+----
+Provide structure MV*
+
+consider frameworks
+
+----
+click delay don't be lazy. use fastclick.js
+
+don't replace all clicks with touch event.
+it will not be browser runnable.
+
+People smarter than I have already solved the problem.
+fastclick will hijack click events and replace them with touch events
+on the mobile devices.
+
+----- 
+hide htmlish behaviors
+
+alert (we talked about before)
+list of items (press and hold) do you want to navigate to that link?
+Native app would not do that.
+Gives away
+
+Frame around the link
+
+Gives away the fact that your app is a web app/.
+
+Just use these CSS
+----
+PERF
+
+wHYJQM? Page transitions. Not a good reason. JQM is heavy, forces you to 
+work in a certain way. If all you want is page transition go for a micro
+library page transitions
+
+If all u need, ui use a UI toolkit no overhead simply CSS styles
+
+
+
+
+
+
