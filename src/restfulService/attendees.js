@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
       var fullName = e.firstName + " " + e.lastName;
       return fullName.toLowerCase().indexOf(name.toLowerCase()) > -1;
     });
-    res.json(filtered); 
+    res.jsonp(filtered); 
   }
   else {
     res.send(employees);
@@ -31,7 +31,7 @@ app.get('/:id', function(req, res) {
   var filtered = employees.filter(function (e) {
     return e.id === req.params.id;
   });
-  res.json(filtered);
+  res.jsonp(filtered);
 });
 
 var port = process.env.PORT || 3412

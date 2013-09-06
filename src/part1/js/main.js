@@ -2,8 +2,8 @@
 (function () {
 
     /* ---------------------------------- Local Variables ---------------------------------- */
-    //var adapter = new JSONPAdapter();
-	var adapter = new MemoryAdapter();
+    var adapter = new JSONPAdapter();
+	  //var adapter = new MemoryAdapter();
     adapter.initialize().done(function () {
         console.log("Data adapter initialized");
     });
